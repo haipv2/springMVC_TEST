@@ -1,28 +1,62 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <title>Maven + Spring MVC</title>
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+<link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
 
-<spring:url value="/resources/core/css/hello.css" var="coreCss" />
-<spring:url value="/resources/core/css/bootstrap.min.css"
-	var="bootstrapCss" />
-<link href="${bootstrapCss}" rel="stylesheet" />
-<link href="${coreCss}" rel="stylesheet" />
 <script>
 	$("#testForm").submit(function(event) {
 		alert('hehe');
 		$("#mySubmitButton").prop("disabled", true).addClass("disabled");
+	});
+
+	$(function() {
+		$('#toDate').datepicker();
+	});
+
+	$(function() {
+		$('#fromDate').datepicker();
 	});
 </script>
 </head>
 <body>
 	<form:form id="testForm" modelAttribute="testForm" action="testAction">
 		Name: <form:input path="name" />
+		From date: <form:input path="fromDate" id="fromDate" />
+		<form:errors path="fromDate" class="control-label" />
+		To date: <form:input path="toDate" id="toDate" />
 		<input id="mySubmitButton" type="submit" value="HELLO">
 	</form:form>
+	<h2>Spring MVC and List Example</h2>
+
+	<c:if test="${not empty lists}">
+
+		<ul>
+			<c:forEach var="listValue" items="${lists}">
+				<li>${listValue}</li>
+			</c:forEach>
+		</ul>
+
+	</c:if>
+
+	<a href="/spring3/1">1</a>
+	<a href="/spring3/2">2</a>
+	<a href="/spring3/3">3</a>
+	<div>
+		<a href="/spring3/phoneList">Phone List</a>
+	</div>
+
+	<%-- // load our paging tag, pass pagedListHolder and the link --%>
+	<tg:paging pagedListHolder="${pagedListHolder}"
+		pagedLink="${pagedLink}" />
 
 	<%-- <nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
