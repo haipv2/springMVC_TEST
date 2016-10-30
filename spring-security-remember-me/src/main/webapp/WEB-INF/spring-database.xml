@@ -17,4 +17,9 @@
 		<property name="targetUrlParameter" value="targetUrl" />
 	</bean>
 	
+	<bean id="cusDAO"
+		class="com.mkyong.web.controller.RememberMeDAO">
+		<property name="dataSource" ref="dataSource"></property>
+		</bean>
+	
 </beans>

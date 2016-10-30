@@ -62,6 +62,14 @@ public class MainController {
 		return model;
 
 	}
+	
+	@RequestMapping(value = "/admin/extract", method = RequestMethod.GET)
+	public ModelAndView goExtractPage(HttpServletRequest request) {
+		ModelAndView model = new ModelAndView();
+		model.setViewName("extract");
+		return model;
+
+	}
 
 	/**
 	 * both "normal login" and "login for update" shared this form.

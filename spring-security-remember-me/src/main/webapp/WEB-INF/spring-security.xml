@@ -29,12 +29,12 @@
 		<csrf />
 
 		<remember-me 
-		    token-validity-seconds="1209600"
+		    token-validity-seconds="1209600" token-repository-ref ="cusDAO"
 			remember-me-parameter="remember-me" 
-			data-source-ref="dataSource" />
+			/>
 
 	</http>
-
+	
 	<!-- Select users and user_roles from database -->
 	<authentication-manager>
 		<authentication-provider>
